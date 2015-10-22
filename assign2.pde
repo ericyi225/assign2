@@ -8,7 +8,7 @@ PImage start1Img;
 PImage start2Img;
 PImage end1Img;
 PImage end2Img;
-int x,A,B,Ex,Ey,E;
+int hp,Tx,Ty,Ex,Ey,E;
 final int GAME_START=1, GAME_RUN=2, GAME_FINISH=3;
 int gameState;
 boolean upPressed = false;
@@ -31,9 +31,9 @@ void setup () {
   end1Img=loadImage("img/end1.png");
   end2Img=loadImage("img/end2.png");
   
-  x=floor(random(20,200));
-  A=floor(random(20,550));
-  B=floor(random(30,460));
+  hp=40;
+  Tx=floor(random(20,550));
+  Ty=floor(random(30,460));
   Ex=0;
   Ey=floor(random(30,440));
   E=0;
@@ -64,9 +64,9 @@ void draw() {
   image(bg2Img,E-640,0);//
   image(bg1Img,E-1280,0);
   image(fighterImg,Fx,Fy);
-  rect(20,10,x,20);
+  rect(20,10,hp,20);
   fill(255,0,0);
-  image(treasureImg,A,B);
+  image(treasureImg,Tx,Ty);
   image(enemyImg,Ex,Ey);
   image(hpImg,10,10);
   
@@ -99,8 +99,23 @@ void draw() {
     Fx=590;
     }
   }
+  //treasure+hp
+  if(Fx<Tx+41 && Fx>=Tx-41 && Fy<=Ty+41 && Fy>=Ty-41){
+   Tx=floor(random(20,550));
+   Ty=floor(random(30,460));
+   hp+=20;
+  }
   
+  //enemy-hp
   if(Fx<=Ex+50 && Fx>=Ex-60.8 && Fy<=Ey+60.8 && Fy>=Ey-60.8){
+   Ex=0;
+   Ey=floor(random(30,440));
+   hp-=40;
+  }
+  if(hp>=195){
+  hp=195;
+  }
+  if(hp<=0){
   gameState = GAME_FINISH;
   }
   break;
@@ -110,12 +125,14 @@ void draw() {
   image(end2Img,0,0);
   if(mouseX>202.3 && mouseX<440 && mouseY>300 && mouseY<355){
     if(mousePressed){
+      hp=40;
+      Tx=floor(random(20,550));
+      Ty=floor(random(30,460));
       Ex=0;
       Ey=floor(random(30,440));
       E=0;
       Fx=580;
       Fy=240;
-      
       gameState = GAME_RUN;
     }
     else{
@@ -164,3 +181,5 @@ void draw() {
     }
   }
 }
+
+
