@@ -100,7 +100,7 @@ void draw() {
     }
   }
   
-  if(Fx<=Ex+60.8 && Fx>=Ex-60.8 && Fy<=Ey+60.8 && Fy>=Ey-60.8){
+  if(Fx<=Ex+50 && Fx>=Ex-60.8 && Fy<=Ey+60.8 && Fy>=Ey-60.8){
   gameState = GAME_FINISH;
   }
   break;
@@ -161,7 +161,6 @@ void draw() {
       case RIGHT:
         rightPressed = false;
         break;
-     }
     }
   }
 }
