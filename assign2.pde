@@ -19,7 +19,6 @@ int Fx,Fy;
 
 void setup () {
   size(640,480);
-  
   fighterImg=loadImage("img/fighter.png");
   hpImg=loadImage("img/hp.png");
   treasureImg=loadImage("img/treasure.png");
