@@ -161,7 +161,7 @@ void draw() {
       case RIGHT:
         rightPressed = false;
         break;
+     }
     }
   }
-}
 }
